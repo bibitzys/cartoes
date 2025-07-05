@@ -1,93 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Vários Cartões Interativos</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartões Interativos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
 
-  .container {
-    perspective: 1000px;
-  }
+    h1 {
+      margin-bottom: 30px;
+      color: #333;
+    }
 
-  .card {
-    width: 300px;
-    height: 200px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.8s;
-    cursor: pointer;
-  }
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      width: 100%;
+    }
 
-  .card.flipped {
-    transform: rotateY(180deg);
-  }
+    .card {
+      perspective: 1000px;
+      cursor: pointer;
+    }
 
-  .front, .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    font-size: 1.2em;
-    text-align: center;
-  }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
 
-  .back {
-    background-color: #e0f7fa;
-    transform: rotateY(180deg);
-  }
-</style>
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .card-front {
+      background: #ffffff;
+    }
+
+    .card-back {
+      background: #4caf50;
+      color: white;
+      transform: rotateY(180deg);
+    }
+  </style>
 </head>
 <body>
+  <h1>Cartões de Perguntas</h1>
 
-<!-- Cartões -->
-<div class="container">
-  <div class="container">
-    <div class="card" onclick="flipCard(this)">
-      <div class="front">Qual é a capital do Brasil?</div>
-      <div class="back">Brasília</div>
+  <div class="cards-container">
+    <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          O que é HTML?
+        </div>
+        <div class="card-face card-back">
+          HTML é a linguagem de marcação usada para estruturar páginas web.
+        </div>
+      </div>
     </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="front">Qual é o maior planeta do sistema solar?</div>
-      <div class="back">Júpiter</div>
+
+    <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          Para que serve o CSS?
+        </div>
+        <div class="card-face card-back">
+          CSS é usado para estilizar e deixar bonito o conteúdo HTML.
+        </div>
+      </div>
     </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="front">Quem escreveu "Dom Casmurro"?</div>
-      <div class="back">Machado de Assis</div>
+
+    <div class="card" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          O que é JavaScript?
+        </div>
+        <div class="card-face card-back">
+          JavaScript é a linguagem de programação que torna a página interativa.
+        </div>
+      </div>
     </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="front">Qual é a fórmula da água?</div>
-      <div class="back">H₂O</div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="front">Em que continente fica o Egito?</div>
-      <div class="back">África</div>
-    </div>
+
+    <!-- Você pode adicionar mais cartões copiando e colando esse bloco -->
   </div>
-</div>
-
-<script>
-  function flipCard(card) {
-    card.classList.toggle('flipped');
-  }
-</script>
-
 </body>
 </html>
